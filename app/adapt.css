@@ -1,0 +1,372 @@
+/* =====================================================================
+   Adaptaciones por persona. Los atributos de <html> los pone lib/prefs.js
+   según las necesidades que la persona eligió en «Adaptar la página».
+   ===================================================================== */
+
+/* ---------- Alto contraste (baja visión) ---------- */
+:root[data-theme="contrast"] {
+  --bg: #000000;
+  --surface: #000000;
+  --text: #ffffff;
+  --muted: #ffffff;
+  --border: #ffffff;
+  --primary: #ffd400;
+  --primary-text: #000000;
+  --accent: #333333;
+  --ok: #000000;
+  --ok-bg: #00e676;
+  --danger: #d00000;
+  --danger-hover: #a00000;
+  --danger-border: #ffffff;
+  --danger-text: #ffffff;
+  --danger-soft-bg: #000000;
+  --danger-soft-text: #ff8080;
+  --danger-fg: #ff8080;
+  --focus: #00e5ff;
+  --highlight: #00e5ff;
+  --highlight-bg: rgba(0, 229, 255, 0.2);
+  --hero-bg: #000000;
+  --hero-text: #ffffff;
+  --shadow: none;
+}
+:root[data-theme="contrast"] .hero,
+:root[data-theme="contrast"] .tag,
+:root[data-theme="contrast"] .notice {
+  border: 2px solid #ffffff;
+}
+:root[data-theme="contrast"] a:not(.btn):not(.big-link):not(.logo) {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Daltonismo: rojo y verde (protanopia / deuteranopia) ----------
+   Verde → azul y rojo → naranja oscuro: azul y naranja se distinguen bien. */
+:root[data-cvd="redgreen"][data-theme="light"] {
+  --ok: #1e40af;
+  --ok-bg: #dbeafe;
+  --danger: #9a3412;
+  --danger-hover: #7c2d12;
+  --danger-border: #431407;
+  --danger-soft-bg: #ffedd5;
+  --danger-soft-text: #7c2d12;
+  --danger-fg: #9a3412;
+}
+:root[data-cvd="redgreen"][data-theme="dark"] {
+  --ok: #bfdbfe;
+  --ok-bg: #1e3a8a;
+  --danger: #9a3412;
+  --danger-hover: #7c2d12;
+  --danger-border: #fdba74;
+  --danger-soft-bg: #7c2d12;
+  --danger-soft-text: #ffedd5;
+  --danger-fg: #fdba74;
+}
+
+/* ---------- Daltonismo: azul y amarillo (tritanopia) ----------
+   Se evitan las parejas azul/verde y amarillo/violeta: se usa rojo, verde azulado y negro. */
+:root[data-cvd="blueyellow"][data-theme="light"] {
+  --primary: #111827;
+  --primary-text: #ffffff;
+  --accent: #e5e7eb;
+  --ok: #115e59;
+  --ok-bg: #ccfbf1;
+  --focus: #111827;
+  --highlight: #e11d48;
+  --highlight-bg: rgba(225, 29, 72, 0.12);
+  --hero-bg: linear-gradient(135deg, #ffe4e6, #ccfbf1);
+}
+:root[data-cvd="blueyellow"][data-theme="dark"] {
+  --primary: #f9fafb;
+  --primary-text: #111827;
+  --accent: #374151;
+  --ok: #99f6e4;
+  --ok-bg: #134e4a;
+  --focus: #f9fafb;
+  --highlight: #fb7185;
+  --highlight-bg: rgba(251, 113, 133, 0.18);
+  --hero-bg: linear-gradient(135deg, #4c0519, #134e4a);
+}
+
+/* ---------- Sin colores (acromatopsia) ----------
+   Todo en grises con mucho contraste. Los estados se distinguen también por la forma. */
+:root[data-cvd="mono"][data-theme="light"] {
+  --primary: #111827;
+  --primary-text: #ffffff;
+  --accent: #e5e7eb;
+  --ok: #111827;
+  --ok-bg: #ffffff;
+  --danger: #111827;
+  --danger-hover: #000000;
+  --danger-border: #000000;
+  --danger-text: #ffffff;
+  --danger-soft-bg: #e5e7eb;
+  --danger-soft-text: #000000;
+  --danger-fg: #000000;
+  --focus: #000000;
+  --highlight: #000000;
+  --highlight-bg: rgba(0, 0, 0, 0.08);
+  --hero-bg: #f3f4f6;
+}
+:root[data-cvd="mono"][data-theme="dark"] {
+  --primary: #f9fafb;
+  --primary-text: #111827;
+  --accent: #374151;
+  --ok: #f9fafb;
+  --ok-bg: #111827;
+  --danger: #f9fafb;
+  --danger-hover: #e5e7eb;
+  --danger-border: #ffffff;
+  --danger-text: #111827;
+  --danger-soft-bg: #374151;
+  --danger-soft-text: #ffffff;
+  --danger-fg: #ffffff;
+  --focus: #ffffff;
+  --highlight: #ffffff;
+  --highlight-bg: rgba(255, 255, 255, 0.12);
+  --hero-bg: #1f2937;
+}
+:root[data-cvd="mono"] .card[style] {
+  border-color: var(--border) !important;
+}
+:root[data-cvd="mono"] .btn-ok,
+:root[data-cvd="mono"] .badge-official,
+:root[data-cvd="mono"] .notice {
+  border: 4px double var(--ok);
+}
+:root[data-cvd="mono"] .card-urgent {
+  border-style: double;
+  border-width: 7px;
+}
+:root[data-cvd="mono"] .sos-btn {
+  border-style: double;
+  border-width: 8px;
+}
+:root[data-cvd="mono"] .tag {
+  border: 2px solid var(--text);
+}
+
+/* ---------- Modo calma (sensibilidad sensorial) ----------
+   Colores suaves, sin degradados, sin sombras y sin movimiento. */
+:root[data-calm="1"][data-theme="light"] {
+  --primary: #475569;
+  --accent: #e2e8f0;
+  --hero-bg: var(--surface);
+  --hero-text: var(--text);
+  --shadow: none;
+}
+:root[data-calm="1"][data-theme="dark"] {
+  --primary: #cbd5e1;
+  --primary-text: #0f172a;
+  --accent: #334155;
+  --hero-bg: var(--surface);
+  --hero-text: var(--text);
+  --shadow: none;
+}
+:root[data-calm="1"] .hero {
+  border: 2px solid var(--border);
+}
+:root[data-calm="1"] .card[style] {
+  border-color: var(--border) !important;
+}
+
+/* ---------- Sin movimiento ---------- */
+:root[data-motion="reduce"] *,
+:root[data-calm="1"] * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* ---------- Fondo crema (cansa menos la vista; ayuda a muchas personas con dislexia) ---------- */
+:root[data-tint="cream"][data-theme="light"] {
+  --bg: #f8efd4;
+  --surface: #fffaeb;
+}
+
+/* ---------- Tipo de letra ---------- */
+:root[data-font="lexend"] {
+  --font-body: "Lexend", "Segoe UI", system-ui, sans-serif;
+}
+:root[data-font="dyslexic"] {
+  --font-body: "OpenDyslexic", "Comic Sans MS", system-ui, sans-serif;
+}
+/* OpenDyslexic es muy ancha: los títulos un poco más pequeños para que quepan */
+:root[data-font="dyslexic"] h1 {
+  font-size: 1.7rem;
+}
+:root[data-font="dyslexic"] h2 {
+  font-size: 1.25rem;
+}
+
+/* ---------- Más espacio entre letras, palabras y líneas ---------- */
+:root[data-spacing="wide"] {
+  --line: 1.9;
+  --letter: 0.06em;
+  --word: 0.16em;
+}
+:root[data-spacing="wide"] p,
+:root[data-spacing="wide"] li,
+:root[data-spacing="wide"] dd {
+  max-width: 68ch;
+}
+:root[data-spacing="wide"] p {
+  margin-bottom: 1.2rem;
+}
+:root[data-spacing="wide"] h1,
+:root[data-spacing="wide"] h2 {
+  line-height: 1.35;
+}
+
+/* ---------- Botones grandes (dificultades motoras) ---------- */
+:root[data-targets="big"] {
+  --target: 64px;
+  --target-small: 56px;
+}
+:root[data-targets="big"] .card-actions,
+:root[data-targets="big"] .chips,
+:root[data-targets="big"] .tabs,
+:root[data-targets="big"] .quick,
+:root[data-targets="big"] .tools,
+:root[data-targets="big"] .reader-row,
+:root[data-targets="big"] .grid {
+  gap: 1rem;
+}
+:root[data-targets="big"] .nav a {
+  padding: 0.7rem 0.2rem;
+}
+
+/* =====================================================================
+   Página «Adaptar la página»
+   ===================================================================== */
+.need-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  margin-bottom: 1rem;
+}
+.need-card {
+  font: inherit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 92px;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius);
+  border: 3px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+}
+.need-card:hover {
+  border-color: var(--primary);
+}
+.need-card .need-emoji {
+  font-size: 2.4rem;
+  line-height: 1;
+}
+.need-card[aria-pressed="true"] {
+  border-width: 5px;
+  border-color: var(--primary);
+  background: var(--accent);
+}
+.need-card .need-check {
+  margin-left: auto;
+  font-size: 1.4rem;
+}
+.cvd-choice {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.5rem 0 1rem;
+}
+.cvd-option {
+  font: inherit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: var(--target);
+  padding: 0.6rem 0.9rem;
+  border-radius: 14px;
+  border: 3px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.cvd-option[aria-pressed="true"] {
+  border-width: 5px;
+  border-color: var(--primary);
+}
+.cvd-option small {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+}
+.swatches {
+  display: inline-flex;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+.swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 2px solid var(--border);
+}
+.option-group {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.1rem;
+}
+.option-group legend {
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  padding: 0;
+}
+.option-group .chips {
+  margin: 0;
+}
+.chip-small {
+  min-height: 40px;
+  padding: 0.1rem 0.8rem;
+}
+.scale-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.scale-value {
+  font-weight: 800;
+  min-width: 4.5ch;
+  text-align: center;
+}
+.changes {
+  margin: 0.4rem 0 0;
+  padding-left: 1.2rem;
+}
+.preview {
+  border: 3px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+.adapt-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  border: 3px solid var(--primary);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  background: var(--surface);
+}
+.adapt-banner p {
+  margin: 0;
+  flex: 1 1 260px;
+  font-weight: 700;
+}
